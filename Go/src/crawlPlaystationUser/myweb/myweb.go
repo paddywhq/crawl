@@ -7,7 +7,7 @@ import (
 	//"strings"
 	"sync"
 	"io/ioutil" 
-	"myfile"
+	"../myfile"
 )
 
 type CrawlJob struct{
@@ -19,6 +19,8 @@ func Crawl( url string, client *http.Client ) (*http.Response, error) {
 	time.Sleep(1000 * time.Millisecond)
 	
 	req, err := http.NewRequest("GET", url, nil)
+	req.Header.Add("Accept", "application/json, text/javascript, */*; q=0.01")
+	req.Header.Add("Referer", "https://my.playstation.com/logged-in/trophies/public-trophies/")
 	resp, err := client.Do(req)
 
 	defer func() {

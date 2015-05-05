@@ -30,7 +30,7 @@ func main(){
 
 	files := myfile.GetFileList( path )
 
-	csv := "Name,Icon_small,Icon_big,Detail,Date,Developer,Publisher,Genre,Image,Video,Id,Platform\r\n"
+	csv := "Id,Name,Icon_small,Icon_big,Detail,Date,Developer,Publisher,Genre,Image,Video,Platform\r\n"
 
 	m := make(map[string]bool)
 	
@@ -51,8 +51,8 @@ func main(){
 		}
 
 		line := fmt.Sprintf( 
-			"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%+v\",\"%+v\",\"%+v\",\"%+v\",\"%+v\",\"%s\",\"%+v\"\r\n",
-			game.Name, game.Icon_small, game.Icon_big, game.Detail, game.Date, game.Developer, game.Publisher, game.Genre, game.Image, game.Video, game.Id, game.Platform)
+			"\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%s\",\"%+v\",\"%+v\",\"%+v\",\"%+v\",\"%+v\",\"%+v\"\r\n",
+			game.Id, game.Name, game.Icon_small, game.Icon_big, game.Detail, game.Date, game.Developer, game.Publisher, game.Genre, game.Image, game.Video, game.Platform)
 
 		csv += line
 

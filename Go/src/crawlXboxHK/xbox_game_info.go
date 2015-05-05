@@ -41,7 +41,7 @@ const patternForXbox360Genre = `<li><label>遊戲類型\s*：</label>\s*(.*?)\s*
 const patternForXbox360Image = `<div id="image\d+" class="TabPage image">\s*<img src="(.*?)" alt=".*?" />\s*</div>`
 
 const patternForXbox1Result = `<a data-alt=".*?" data-contentid=".*?" data-slot="\d*" href="(.*?)"><img alt=".*?" src=".*?&amp;format=png&amp;h=294&amp;w=215" title=".*?" /></a>`
-const patternForXbox1Name = `<h1 class="title">(.*?)</h1>`
+const patternForXbox1Name = `<div class="title">\s*(.*?)\s*</div>`
 const patternForXbox1IconVertical = `<img alt=".*?" src="(.*?)&amp;format=png&amp;h=294&amp;w=215" title=".*?" />`
 const patternForXbox1IconHorizontal = `<img alt="" class="superHeroImage" id="superHeroImage" src="(.*?)&amp;format=jpg" />`
 const patternForXbox1Detail = `<label>.*?說明:</label><span>([\s\S]*?)</span>`
@@ -166,15 +166,15 @@ func main(){
 				detail := myregex.Parse( htmlFile, patternForXbox1Detail )
 				if len(detail) >= 1 {
 					info.Detail = detail[0][1]
-					info.Detail = strings.Replace( info.Detail, "\n", " ", -1 )
-					info.Detail = strings.Replace( info.Detail, "\r", " ", -1 )
+					//info.Detail = strings.Replace( info.Detail, "\n", " ", -1 )
+					info.Detail = strings.Replace( info.Detail, "\r", "\n", -1 )
 					info.Detail = strings.Replace( info.Detail, "\t", " ", -1 )
 					info.Detail = strings.Replace( info.Detail, "\f", "", -1 )
 					info.Detail = strings.Replace( info.Detail, "\v", "", -1 )
 					info.Detail = strings.Replace( info.Detail, "\\\"", "\"", -1 )
 					info.Detail = strings.Replace( info.Detail, "\"", "\"\"", -1 )
-					space := regexp.MustCompile(`[\s 　]+`)
-					info.Detail = space.ReplaceAllString( info.Detail, ` ` )
+					//space := regexp.MustCompile(`[\s 　]+`)
+					//info.Detail = space.ReplaceAllString( info.Detail, ` ` )
 				}
 
 				date := myregex.Parse( htmlFile, patternForXbox1Date )
