@@ -57,9 +57,13 @@ func CrawlUserAchievementsXbox(userName string, userId string) {
 
 		url := "https://achievements.xboxlive.com/users/xuid(" + userId + ")/achievements?orderBy=UnlockTime&maxItems=50000"
 		fmt.Printf("crawling: %s\n", url)
+
+		//获取用户名和密码加密测试
 		url = `https://account.xbox.com/passport/setCookies.ashx?rru=https%3a%2f%2faccount.xbox.com%2fzh-CN%2fAccount%2fSignin&wa=wsignin1.0`
 		//url = `https://account.xbox.com/Account/Signin`
 		resp, err := myweb.GetCookieToken( url, client )
+
+		//爬取gameid
 		url = "https://achievements.xboxlive.com/users/xuid(" + userId + ")/achievements?orderBy=UnlockTime&maxItems=50000"
 		resp, err = myweb.Crawl( url, client )
 
